@@ -1,0 +1,258 @@
+@mixin keyframes($name) {
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  /* Standard syntax */
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+//TODO: usar "filter:opacity()" (da error al compilar)
+@mixin animate-use-opacity {
+  @include keyframes(opacity) {
+    from {
+      opacity: #{var(--start, 0)};
+    }
+    to {
+      opacity: #{var(--end, 1)};
+    }
+  }
+}
+
+@mixin animate-opacity($animation, $start, $end) {
+  --start: #{$start};
+  --end: #{$end};
+  opacity: #{$start};
+  animation: opacity #{$animation};
+}
+
+@mixin animate-use-scale {
+  @include keyframes(scale) {
+    from {
+      transform: scale(#{var(--start, 0)});
+    }
+    to {
+      transform: scale(#{var(--end, 1)});
+    }
+  }
+}
+
+@mixin animate-scale($animation, $start, $end) {
+  --start: #{$start};
+  --end: #{$end};
+  transform: scale(#{var(--start, 0)});
+  animation: scale #{$animation};
+}
+
+@mixin keyframe-animate-scale-elastic($ref, $p1, $p2, $p3) {
+  @keyframes #{scale-elastic + $ref} {
+    #{$p1} {
+      transform: scale(#{var(--start, 0)});
+    }
+    #{$p2} {
+      transform: scale(#{var(--middle, 1.25)});
+    }
+    #{$p3} {
+      transform: scale(#{var(--end, 1)});
+    }
+  }
+}
+
+@mixin animate-scale-elastic(
+  $ref: "1",
+  $animation,
+  $start,
+  $middle,
+  $end,
+  $p1: 0%,
+  $p2: 80%,
+  $p3: 100%
+) {
+  --start: #{$start};
+  --middle: #{$middle};
+  --end: #{$end};
+  transform: scale(#{var(--start, 0)});
+  animation: (scale-elastic + $ref) #{$animation};
+
+  @include keyframe-animate-scale-elastic(
+    $ref: $ref,
+    $p1: $p1,
+    $p2: $p2,
+    $p3: $p3
+  );
+}
+
+@mixin animate-use-translate {
+  @include keyframes(translate) {
+    from {
+      transform: translate(#{var(--start-x, 0)}, #{var(--start-y, 0)});
+    }
+    to {
+      transform: translate(#{var(--end-x, 0)}, #{var(--end-y, 0)});
+    }
+  }
+}
+
+@mixin animate-translate($animation, $start-x, $start-y, $end-x, $end-y) {
+  --start-x: #{$start-x};
+  --start-y: #{$start-y};
+  --end-x: #{$end-x};
+  --end-y: #{$end-y};
+  transform: translate(#{var(--start-x, 0)}, #{var(--start-y, 0)});
+  animation: translate #{$animation};
+}
+
+@mixin animate-use-rotate {
+  @include keyframes(rotate) {
+    from {
+      transform: rotate(#{var(--start, 0deg)});
+    }
+    to {
+      transform: rotate(#{var(--end, 180deg)});
+    }
+  }
+}
+
+@mixin animate-rotate($animation, $start, $end) {
+  --start: #{$start};
+  --end: #{$end};
+  transform: rotate(#{var(--start, 0deg)});
+  animation: rotate #{$animation};
+}
+
+@mixin animate-use-filter {
+  @include keyframes(filter) {
+    from {
+      filter: var(--start-filter, none);
+    }
+    to {
+      filter: var(--end-filter, none);
+    }
+  }
+}
+
+@mixin animate-filter($animation, $start, $end) {
+  --start-filter: #{$start};
+  --end-filter: #{$end};
+  filter: var(--start-filter, none);
+  animation: filter #{$animation};
+}
+
+@mixin animate-use-skew {
+  @include keyframes(skew) {
+    from {
+      transform: skew(#{var(--start-x, 0)}, #{var(--start-y, 0)});
+    }
+    to {
+      transform: skew(#{var(--end-x, 0)}, #{var(--end-y, 0)});
+    }
+  }
+}
+
+@mixin animate-skew($animation, $start-x, $start-y, $end-x, $end-y) {
+  --start-x: 10deg;
+  --end-x: 0deg;
+  --start-y: 0deg;
+  --end-y: 0deg;
+  transform: skew(#{var(--start-x, 0)}, #{var(--start-y, 0)});
+  animation: skew #{$animation};
+}
+
+@function get-transforms($end, $scale, $rotate, $translate) {
+  $result: null;
+  $scale-p: var(--scale-start, 1);
+  $rotate-p: var(--rotate-start, 0deg);
+  $translate-p-x: var(--translate-start-x, 0);
+  $translate-p-y: var(--translate-start-x, 0);
+  @if ($end) {
+    $scale-p: var(--scale-end, 0);
+    $rotate-p: var(--rotate-end, 0deg);
+    $translate-p-x: var(--translate-end-x, 0);
+    $translate-p-y: var(--translate-end-y, 0);
+  }
+
+  @if ($scale) {
+    $result: scale(#{$scale-p});
+  }
+  @if ($rotate) {
+    $result: $result + " " + rotate(#{$rotate-p});
+  }
+  @if ($translate) {
+    $result: $result + " " + translate(#{$translate-p-x}, #{$translate-p-y});
+  }
+  @return $result;
+}
+
+@mixin keyframe-animate-transforms(
+  $ref: "1",
+  $scale: false,
+  $rotate: false,
+  $translate: false
+) {
+  @keyframes #{transforms + $ref} {
+    from {
+      transform-origin: center;
+      transform: get-transforms(false, $scale, $rotate, $translate);
+    }
+    to {
+      transform-origin: center;
+      transform: get-transforms(true, $scale, $rotate, $translate);
+    }
+  }
+}
+
+@mixin animate-transforms(
+  $ref: "1",
+  $translate-start-x: "0",
+  $translate-end-x: "0",
+  $rotate-start: "0",
+  $rotate-end: "0",
+  $scale-start: "0",
+  $scale-end: "0"
+) {
+  --translate-start-x: #{$translate-start-x};
+  --translate-end-x: #{$translate-end-x};
+  --rotate-start: #{$rotate-start};
+  --rotate-end: #{$rotate-end};
+  --scale-start: #{$scale-start};
+  --scale-end: #{$scale-end};
+  animation: transforms#{$ref} 1s 3s ease-in forwards;
+
+  $hasRotate: $rotate-start != "0" or $rotate-end != "0";
+  $hasTranslate: $translate-start-x != "0" or $translate-end-x != "0";
+  $hasScale: $scale-start != "0" or $scale-end != "0";
+
+  @include keyframe-animate-transforms(
+    $ref: $ref,
+    $scale: $hasScale,
+    $rotate: $hasRotate,
+    $translate: $hasTranslate
+  );
+}
+
+@mixin animate-delays($start, $end, $delay, $initialDelay: 0) {
+  @for $i from $start through $end {
+    &:nth-child(#{$i}) {
+      animation-delay: $delay * $i + $initialDelay;
+    }
+  }
+}
+
+@mixin animate-use-dash() {
+  @include keyframes(dash) {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+@mixin animate-dash($animation) {
+  //add (pathLength="1") to your <path>
+  stroke-dashoffset: 1;
+  animation: dash #{$animation};
+}

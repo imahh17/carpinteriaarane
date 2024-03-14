@@ -1,0 +1,67 @@
+@mixin reset-all {
+  @include reset-box-sizing();
+  @include reset-margin();
+  @include reset-media();
+  @include reset-font-smoothing();
+  @include reset-text-overflows();
+  @include reset-nav-list();
+}
+
+@mixin reset-height {
+  html, body {
+    height: 100%;
+  }  
+}
+
+@mixin reset-line-height {
+  * {
+    line-height: calc(1em + 0.5rem);
+  }
+}
+
+@mixin reset-form-controls {
+  input, button, textarea, select {
+    font: inherit;
+  }
+}
+
+@mixin reset-box-sizing {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+}
+
+@mixin reset-margin {
+  * {
+    margin: 0;
+  }
+}
+
+@mixin reset-media {
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@mixin reset-font-smoothing {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@mixin reset-text-overflows {
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+}
+
+@mixin reset-nav-list {
+  nav {
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  }
+}

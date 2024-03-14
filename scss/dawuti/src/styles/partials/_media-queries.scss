@@ -1,0 +1,92 @@
+@use './breakpoints-variables' as *;
+
+@mixin mq-xs($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-xs - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $breakpoint-xs) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-sm($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-sm - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-md($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-md - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $breakpoint-md) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-lg($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-lg - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-xl($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-xl - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-xxl($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-xxl - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $breakpoint-xxl) {
+      @content;
+    }
+  }
+}
+
+@mixin mq($width, $down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($width - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $width) {
+      @content;
+    }
+  }
+}

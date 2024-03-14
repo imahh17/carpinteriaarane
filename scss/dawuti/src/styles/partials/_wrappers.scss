@@ -1,0 +1,58 @@
+@use './wrappers-variables' as wv;
+@use './media-queries' as mq;
+
+@mixin wrappers-all() {
+  @include wrapper-centered();
+  @include wrapper-fluid();
+}
+
+@mixin wrapper-centered {
+  :root {
+    --wrapper-centered-xs: #{wv.$wrapper-centered-xs};
+    --wrapper-centered-sm: #{wv.$wrapper-centered-sm};
+    --wrapper-centered-md: #{wv.$wrapper-centered-md};
+    --wrapper-centered-lg: #{wv.$wrapper-centered-lg};
+    --wrapper-centered-xl: #{wv.$wrapper-centered-xl};
+    --wrapper-centered-xxl: #{wv.$wrapper-centered-xxl};
+
+    .wrapper-centered {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding-left: var(--gutter, 15px);
+      padding-right: var(--gutter, 15px);
+      @include mq.mq-xs {
+        width: var(--wrapper-centered-xs);
+      }
+      @include mq.mq-sm {
+        width: var(--wrapper-centered-sm);
+      }
+      @include mq.mq-md {
+        width: var(--wrapper-centered-md);
+      }
+      @include mq.mq-lg {
+        width: var(--wrapper-centered-lg);
+      }
+      @include mq.mq-xl {
+        width: var(--wrapper-centered-xl);
+      }
+      @include mq.mq-xxl {
+        width: var(--wrapper-centered-xxl);
+      }
+    }
+  }
+}
+
+@mixin wrapper-fluid {
+  .wrapper-fluid {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: var(--safe-area, 15px);
+    padding-right: var(--safe-area, 15px);
+    @include mq.mq-md {
+      padding-left: var(--safe-area, 60px);
+      padding-right: var(--safe-area, 60px);
+    }
+  }
+}

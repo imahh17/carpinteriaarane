@@ -1,0 +1,65 @@
+@use './breakpoints-variables' as breakpointsVariables;
+@use './media-queries' as *;
+
+@mixin display-helpers {
+  .hidden-xs {
+    @media screen and (max-width: (breakpointsVariables.$breakpoint-sm - 1px)) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-sm {
+    @media screen and (min-width: breakpointsVariables.$breakpoint-sm) and (max-width: (breakpointsVariables.$breakpoint-md - 1px)) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-sm-up {
+    @include mq-sm{
+      display: none !important;
+    }
+  }
+  
+  .hidden-md {
+    @media screen and (min-width: breakpointsVariables.$breakpoint-md) and (max-width: (breakpointsVariables.$breakpoint-lg - 1px)) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-md-up {
+    @include mq-md{
+      display: none !important;
+    }
+  }
+  
+  .hidden-lg {
+    @media screen and (min-width: breakpointsVariables.$breakpoint-lg) and (max-width: (breakpointsVariables.$breakpoint-xl - 1px)) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-lg-up {
+    @include mq-md{
+      display: none !important;
+    }
+  }
+  
+  .hidden-xl {
+    @media screen and (min-width: breakpointsVariables.$breakpoint-xl) and (max-width: (breakpointsVariables.$breakpoint-xxl - 1px)) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-xl-up {
+    @include mq-xl{
+      display: none !important;
+    }
+  }
+  
+  .hidden-xxl {
+    @media screen and (min-width: breakpointsVariables.$breakpoint-xxl) {
+      display: none !important;
+    }
+  }
+  
+}

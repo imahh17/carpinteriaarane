@@ -1,0 +1,27 @@
+@use './media-queries' as *;
+@use 'sass:math';
+
+$s: 5px !default;
+$gutter: 15px !default;
+$cols: 12 !default;
+
+@mixin space-vars() {
+  :root {
+    --s: #{$s};
+    --gutter: #{$gutter};
+    --safe-area: calc(var(--s) * 3);
+    --cols: #{$cols};
+    @include mq-md {
+      --safe-area: calc(var(--s) * 12);
+    }
+  }
+}
+
+@function size-by-cols($c, $total: null) {
+  @if ($total) {
+    @return calc(#{$c} * 100 / #{$total} * 1%);
+  }
+  @else {
+    @return calc(#{$c} * 100 / var(--cols) * 1%);
+  }
+}

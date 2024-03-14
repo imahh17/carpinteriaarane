@@ -1,0 +1,203 @@
+@use "sass:math";
+
+/*
+ALL
+DAWUTI
+*/
+
+//Breakpoints variables
+
+$breakpoint-xs: 576px !default;
+$breakpoint-sm: 768px !default;
+$breakpoint-md: 992px !default;
+$breakpoint-lg: 1200px !default;
+$breakpoint-xl: 1600px !default;
+$breakpoint-xxl: 2400px !default;
+
+//Wrapper variables
+
+$wrapper-centered-xs: 540px !default;
+$wrapper-centered-sm: 720px !default;
+$wrapper-centered-md: 960px !default;
+$wrapper-centered-lg: 1140px !default;
+$wrapper-centered-xl: 1540px !default;
+$wrapper-centered-xxl: 2340px !default;
+
+//Breakpoints
+
+:root {
+  --breakpoint-xs: #{$breakpoint-xs};
+  --breakpoint-sm: #{$breakpoint-sm};
+  --breakpoint-md: #{$breakpoint-md};
+  --breakpoint-lg: #{$breakpoint-lg};
+  --breakpoint-xl: #{$breakpoint-xl};
+  --breakpoint-xxl: #{$breakpoint-xxl};
+}
+
+//Space
+
+$s: 5px !default;
+$gutter: 15px !default;
+$cols: 12 !default;
+
+@mixin space-vars() {
+  :root {
+    --s: #{$s};
+    --gutter: #{$gutter};
+    //--safe-area: calc(var(--s) * 3);
+    --cols: #{$cols};
+    /* @include mq-md {
+      --safe-area: calc(var(--s) * 12);
+    } */
+  }
+}
+
+@function size-by-cols($c, $total: null) {
+  @if ($total) {
+    @return calc(#{$c} * 100 / #{$total} * 1%);
+  } @else {
+    @return calc(#{$c} * 100 / var(--cols) * 1%);
+  }
+}
+
+//Media queries
+
+@mixin mq-xs($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-xs - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint-xs) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-sm($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-sm - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-md($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-md - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint-md) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-lg($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-lg - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-xl($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-xl - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin mq-xxl($down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($breakpoint-xxl - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $breakpoint-xxl) {
+      @content;
+    }
+  }
+}
+
+@mixin mq($width, $down: false) {
+  @if ($down) {
+    @media screen and (max-width: ($width - 1)) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $width) {
+      @content;
+    }
+  }
+}
+
+//Wrappers
+
+@mixin wrappers-all() {
+  @include wrapper-centered();
+  @include wrapper-fluid();
+}
+
+@mixin wrapper-centered {
+  :root {
+    --wrapper-centered-xs: #{wv.$wrapper-centered-xs};
+    --wrapper-centered-sm: #{wv.$wrapper-centered-sm};
+    --wrapper-centered-md: #{wv.$wrapper-centered-md};
+    --wrapper-centered-lg: #{wv.$wrapper-centered-lg};
+    --wrapper-centered-xl: #{wv.$wrapper-centered-xl};
+    --wrapper-centered-xxl: #{wv.$wrapper-centered-xxl};
+
+    .wrapper-centered {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding-left: var(--gutter, 15px);
+      padding-right: var(--gutter, 15px);
+      @include mq.mq-xs {
+        width: var(--wrapper-centered-xs);
+      }
+      @include mq.mq-sm {
+        width: var(--wrapper-centered-sm);
+      }
+      @include mq.mq-md {
+        width: var(--wrapper-centered-md);
+      }
+      @include mq.mq-lg {
+        width: var(--wrapper-centered-lg);
+      }
+      @include mq.mq-xl {
+        width: var(--wrapper-centered-xl);
+      }
+      @include mq.mq-xxl {
+        width: var(--wrapper-centered-xxl);
+      }
+    }
+  }
+}
+
+/* .wrapper-fluid {
+  //width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: var(--safe-area, 15px);
+  padding-right: var(--safe-area, 15px);
+  @include mq-md {
+    padding-left: var(--safe-area, 60px);
+    padding-right: var(--safe-area, 60px);
+  }
+} */

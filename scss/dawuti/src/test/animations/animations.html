@@ -1,0 +1,417 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./../../../.tmp/styles/index.css" />
+  </head>
+  <script src="./animations.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .display-wrapper {
+      margin: auto;
+      max-width: 90vw;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    article {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+    }
+    .el,
+    .el-editor {
+      width: 130px;
+      height: 130px;
+      background: rgba(0, 0, 150, 0.2);
+      margin: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      padding: 5px;
+      text-align: center;
+      font-size: 12px;
+      flex-flow: column;
+    }
+    .el .el {
+      width: 90px;
+      height: 90px;
+      margin: 0;
+    }
+    h2,
+    code,
+    p {
+      min-width: 100%;
+    }
+    p {
+      font-size: 12px;
+    }
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .delays,
+    .combinations,
+    .multiple,
+    .utils {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-column: 1/11;
+    }
+  </style>
+  <body>
+    <section class="display-wrapper">
+      <article id="opacity">
+        <h2>dawuti.animate-use-opacity()</h2>
+        <code>
+          @include dawuti.animate-opacity('animation', $start, $end); //numbers
+        </code>
+        <div class="el">       
+           @include dawuti.animate-opacity(1s 3s ease-in backwards, 0.2, 0.5);
+        </div>
+        <div class="el">@include dawuti.animate-opacity(1s 3s ease-in forwards, 0.2, 0.5);
+        </div>
+        <div class="el"> @include dawuti.animate-opacity(1s 3s ease-in alternate, 0.2, 0.5);</div>
+        <div class="el">
+          @include dawuti.animate-opacity(1s 3s ease-in both, 0.2, 0.5);
+        </div>
+        <div class="el">@include dawuti.animate-opacity(1s 3s ease-in reverse both, 0.2, 0.5);</div>
+        <div class="el">
+          @include dawuti.animate-opacity(1s 3s ease-in both, 0.2, 0.5);
+
+        </div>
+      </article>
+      <article id="translate">
+        <h2>dawuti.translate()</h2>
+        <code>
+          @include dawuti.animate-translate('animation', $start-x, $start-y,
+          $end-x, $end-y); //px, vw, vh...
+        </code>
+        <div class="el">
+          @include dawuti.animate-translate( 1s 3s ease-in forwards, 0, 0, 100px, 0);
+
+        </div>
+        <div class="el">
+          @include dawuti.animate-translate( 1s 3s ease-in forwards, -100px, 0, 0, 0);
+
+        </div>
+        <div class="el">
+          @include dawuti.animate-translate( 1s 3s ease-in forwards, 0, 100px, 0, 0);
+
+        </div>
+        <div class="el">
+          @include dawuti.animate-translate( 1s 3s ease-in forwards, 0, 0, -100px, 0);
+
+        </div>
+        <div class="el">
+          translate + opacity
+        </div>
+        <div class="el">
+          @include dawuti.animate-translate(1s 3s linear infinite alternate, 0, 0, 100px, 0);
+
+        </div>
+      </article>
+      <article id="scale">
+        <h2>dawuti.scale()</h2>
+        <code>
+          @include dawuti.animate-scale('animation', $start, $end); //numbers
+        </code>
+        <div class="el">(1s 3s ease-in forwards, 1, 0)</div>
+        <div class="el">(1s 3s ease-in forwards, 0, 1)</div>
+        <div class="el">(1s 3s ease-in alternate, 0, 1)</div>
+        <div class="el">(1s 3s ease-in both, 0, 1.5)</div>
+        <div class="el">( 1s 3s ease-in reverse both, 0, 1.5)</div>
+      
+      </article>
+
+      <article id="rotate">
+        <h2>dawuti.rotate()</h2>
+        <code>
+          @include dawuti.animate-rotate('animation', $start, $end);
+        </code>
+        <div class="el">(1s 3s ease-in backwards, 0deg, 180deg)</div>
+        <div class="el">(1s 3s ease-in forwards, 0deg, 180deg)</div>
+        <div class="el">(1s 3s ease-in alternate, 0deg, 180deg)</div>
+        <div class="el">(1s 3s ease-in both, 0deg, 180deg)</div>
+        <div class="el">(1s 3s reverse both, 0deg, 180deg)</div>
+        <div class="el">(1s 3s ease-in both, 0deg, 180deg)</div>
+        <div class="el">(2000ms linear infinite, 0deg, 180deg)</div>
+      </article>
+
+      <article id="scale-elastic">
+        <h2>dawuti.scale-elastic($p1?, $p2?, $p3?)</h2>
+        <code>
+          @include dawuti.animate-scale-elastic($ref: "1", $animation,$start, $middle, $end, $p1: 0%, $p2: 80%, $p3: 100%)
+        </code>
+        <div class="el">
+          ("1", 1s 3s ease-in backwards, 1, 1.25, 1, 0%, 80%, 100%)
+        </div>
+        <div class="el">
+          ("2", 1s 3s ease-in forwards, 1, 1.25, 1, 0%, 80%, 100%)
+        </div>
+        <div class="el">
+          ("3", 1s 3s ease-in alternate, 1, 1.25, 1, 0%, 80%, 100%)
+        </div>
+        <div class="el">
+          ("4", 1s 3s ease-in both, 1, 1.25, 1, 0%, 80%, 100%)
+        </div>
+        <div class="el">
+          ("5", 1s 3s ease-in reverse both, 1, 1.25, 1, 0%, 80%, 100%)
+        </div>
+        <div class="el">
+          ("6", 1s 3s ease-in both, 1, 1.25, 1, 0%, 80%, 100%)
+        </div>
+      </article>
+      <article id="skew">
+        <h2>dawuti.skew()</h2>
+        <code>
+          @include dawuti.animate-skew($animation, $start-x, $start-y, $end-x,
+          $end-y); //deg
+        </code>
+        <div class="el">(1s 3s ease-in forwards, 10deg, 0deg, 0deg, 0deg)</div>
+      </article>
+
+      <article id="filter">
+        <h2>dawuti.filter()</h2>
+        <code>
+          @include dawuti.filter(<animation>, $start, $end); //numbers
+        </code>
+        <div class="el">
+          (1s 3s ease-in forwards,blur(5px) brightness(0.5), blur(0)
+          brightness(0))
+        </div>
+
+        <div class="el">(1s 3s ease-in forwards,sepia(100%), sepia(0))</div>
+
+        <div class="el">(1s 3s ease-in forwards,opacity(0), opacity(1))</div>
+        <div class="el">
+          (1s 3s ease-in forwards,drop-shadow(7px 6px 6px rgba(0,0,0,0.3)),none)
+        </div>
+      </article>
+
+      <article id="transforms">
+        <h2>
+          dawuti.animate-transforms($ref?, $scale?, $rotate?, $translate?)
+        </h2>
+        <p>
+          <i>*Si se usa en más de una ocasión $ref si es requerido.</i>
+        </p>
+        <code>
+          @include dawuti.animate-transforms($ref: "1", $translate-start-x:0, $translate-end-x: 0, $rotate-start: 0, $rotate-end: 0, $scale-start:0, $scale-end:0 );
+        </code>
+        <div class="multiple">
+          <div class="el">
+            MULTIPLE <br />
+            transforms
+          </div>
+          <div class="el">
+            MULTIPLE <br />
+            transforms
+          </div>
+          <div class="el">
+            MULTIPLE <br />
+            transforms
+          </div>
+        </div>
+      </article>
+
+      <h2>Containers</h2>
+      <div id="combinations">
+        <div
+          class="el"
+         
+        >
+          <div class="el" >
+            transforms
+          </div>
+        </div>
+        <div class="el">
+          <div class="el">transforms / opacity</div>
+        </div>
+        <div class="el">
+          <div class="el">opacity/ <br />Zoom Out</div>
+        </div>
+        <div class="el"><div class="el">translates</div></div>
+      </div>
+
+      <article id="delays">
+        <h2>animate-delays($start, $end, $delay, $initialDelay?)</h2>
+        <div class="delays">
+          <div
+            class="el"
+           
+          >
+            1
+          </div>
+          <div
+            class="el"
+           
+          >
+            2
+          </div>
+          <div
+            class="el"
+          
+          >
+            3
+          </div>
+          <div
+            class="el"
+           
+          >
+            4
+          </div>
+          <div
+            class="el"
+            
+          >
+            5
+          </div>
+          <div
+            class="el"
+            
+          >
+            6
+          </div>
+        </div>
+      </article>
+
+      <article id="dash" class="dash">
+        <h2>dawuti.animate-dash()</h2>
+        <code> @include dawuti.animate-dash(); </code>
+        <div class="el">
+          backwards
+          <svg
+            width="129"
+            height="148"
+            viewBox="0 0 129 148"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="wip-drawing"
+          >
+            <path
+              pathLength="1"
+              stroke-dashoffset="1"
+              stroke-dasharray="1"
+              d="M65.882 57.5642C65.882 40.4223 65.7871 23.2393 75.3243 8.65298C76.7289 6.50484 77.6071 -1.86695 80.3288 4.12066C83.1701 10.3716 84.7505 17.2173 87.2217 23.5718C91.1055 33.5588 94.5523 43.9071 99.8744 53.2207C100.114 53.64 134.96 39.858 138.777 38.4907C139.243 38.3236 150.108 34.4132 150.108 35.8469C150.108 37.5162 146.42 39.7079 145.764 41.5123C143.435 47.9171 135.195 55.9584 130.468 60.9635C126.146 65.5387 121.695 71.5465 118.57 77.0154C115.306 82.7281 120.86 87.7272 121.969 94.106C122.633 97.9211 139.765 129.093 138.588 130.27C133.262 135.596 101.655 110.333 97.3249 106.003C94.7095 103.388 92.7874 100.407 90.0544 97.9774C89.2045 97.2219 82.5877 105.444 81.1786 106.853C69.027 119.005 59.9154 133.964 47.1862 145.944C44.5723 148.405 47.1862 125.101 47.1862 122.15C47.1862 113.348 56.6029 100.055 43.787 100.055C35.3248 100.055 24.9201 97.184 16.5931 95.3335C11.6957 94.2452 7.0707 94.5418 2.24073 93.1618C0.333006 92.6167 10.3437 87.458 11.8719 86.8354C16.8963 84.7884 22.0054 81.9401 26.7908 79.2816C31.2586 76.7994 37.674 66.0623 42.9372 66.0623C48.0686 66.0623 59.56 61.575 64.1824 59.2638"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <div class="el">
+          backwards infinite
+          <svg
+            width="129"
+            height="148"
+            viewBox="0 0 129 148"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="wip-drawing"
+          >
+            <path
+              pathLength="1"
+              stroke-dashoffset="1"
+              stroke-dasharray="1"
+              d="M65.882 57.5642C65.882 40.4223 65.7871 23.2393 75.3243 8.65298C76.7289 6.50484 77.6071 -1.86695 80.3288 4.12066C83.1701 10.3716 84.7505 17.2173 87.2217 23.5718C91.1055 33.5588 94.5523 43.9071 99.8744 53.2207C100.114 53.64 134.96 39.858 138.777 38.4907C139.243 38.3236 150.108 34.4132 150.108 35.8469C150.108 37.5162 146.42 39.7079 145.764 41.5123C143.435 47.9171 135.195 55.9584 130.468 60.9635C126.146 65.5387 121.695 71.5465 118.57 77.0154C115.306 82.7281 120.86 87.7272 121.969 94.106C122.633 97.9211 139.765 129.093 138.588 130.27C133.262 135.596 101.655 110.333 97.3249 106.003C94.7095 103.388 92.7874 100.407 90.0544 97.9774C89.2045 97.2219 82.5877 105.444 81.1786 106.853C69.027 119.005 59.9154 133.964 47.1862 145.944C44.5723 148.405 47.1862 125.101 47.1862 122.15C47.1862 113.348 56.6029 100.055 43.787 100.055C35.3248 100.055 24.9201 97.184 16.5931 95.3335C11.6957 94.2452 7.0707 94.5418 2.24073 93.1618C0.333006 92.6167 10.3437 87.458 11.8719 86.8354C16.8963 84.7884 22.0054 81.9401 26.7908 79.2816C31.2586 76.7994 37.674 66.0623 42.9372 66.0623C48.0686 66.0623 59.56 61.575 64.1824 59.2638"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </article>
+    </section>
+
+    <section id="editor" class="editor-wrapper">
+      <div id="backdrop"></div>
+      <div class="editor-card">
+        <form action="">
+          <select name="options" id="options">
+            <option value="opacity">dawuti.animate-opacity()</option>
+            <option value="translate">dawuti.animate-translate()</option>
+            <option value="scale">dawuti.animate-scale()</option>
+            <option value="rotate">dawuti.animate-rotate()</option>
+            <option value="scale-elastic">
+              dawuti.animate-scale-elastic()
+            </option>
+            <option value="skew">dawuti.animate-skew()</option>
+            <option value="filter">dawuti.animate-filter()</option>
+            <option value="transforms">dawuti.animate-transforms()</option>
+            <option value="dash">dawuti.animate-dash()</option>
+          </select>
+          <textarea id="textarea" rows="10" cols="50"></textarea>
+
+          <div class="actions">
+            <button id="copy">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="ionicon"
+                viewBox="0 0 512 512"
+              >
+                <title>Copy</title>
+                <rect
+                  x="128"
+                  y="128"
+                  width="336"
+                  height="336"
+                  rx="57"
+                  ry="57"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                />
+                <path
+                  d="M383.5 128l.5-24a56.16 56.16 0 00-56-56H112a64.19 64.19 0 00-64 64v216a56.16 56.16 0 0056 56h24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                />
+              </svg>
+              Copy
+            </button>
+            <button id="play">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="ionicon"
+                viewBox="0 0 512 512"
+              >
+                <title>Refresh</title>
+                <path
+                  d="M320 146s24.36-12-64-12a160 160 0 10160 160"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                />
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                  d="M256 58l80 80-80 80"
+                />
+              </svg>
+              REPLAY
+            </button>
+          </div>
+        </form>
+        <div class="editor-display">
+          <div id="editor-el" class="el-editor"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

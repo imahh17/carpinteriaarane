@@ -1,0 +1,19 @@
+
+@use 'variables' as *; 
+
+.brand-logo {
+    width: 100px;
+}
+
+.pruebadiv {
+    .greendiv {
+        background-color: red;
+        height: var(--breakpoint-sm);
+    }
+}
+
+@include mq-md {
+    body {
+        //background-color: pink;
+    }
+}
