@@ -1,19 +1,122 @@
 
 @use 'variables' as *; 
 
-.brand-logo {
-    width: 100px;
-}
-
-.pruebadiv {
-    .greendiv {
-        background-color: red;
-        height: var(--breakpoint-sm);
+.site-header {
+    padding-top: var(--s8);
+    padding-bottom: var(--s6);
+    background-color: var(--color-primary);
+    border-bottom: 1px solid #b1885d;
+    .logo-wrap {
+        display: flex;
+        flex-direction: column;
+        .brand-name {
+            font-size: 36px;
+            line-height: 1;
+            margin: 0;
+            color: var(--color-brand);
+            @include mq-md {
+                font-size: 40px;
+            }
+        }
+        .brand-desc {
+            font-family: var(--font-headings);
+            font-weight: 900;
+            font-size: 14px;
+            margin-top: 0px;
+            color: var(--color-brand);
+            //color: rgb(184, 11, 11);
+            @include mq-md {
+                font-size: 18px;
+            }
+        }
     }
 }
 
-@include mq-md {
-    body {
-        //background-color: pink;
+.page-content {
+    padding-top: var(--s8);
+    .featured {
+        border-radius: 100px 0px 100px 0px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.13);
+        .featured-background {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+            overflow-clip-margin: unset;
+            overflow: visible;
+            z-index: -1;
+            @include mq-sm {
+                height: unset;
+            }
+        }
+        .featured-content {
+            width:100%;
+            height: 100%;
+            padding: var(--s9) var(--s6);
+            background-color: rgba(0, 0, 0, 0.432);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: var(--s8)
+        }
+        /* h1 {
+            font-size: 25px;
+            color: #f8f8f8;
+            margin: 0;
+            @include mq-md {
+                font-size: 60px;
+            }
+        }
+        h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #f8f8f8;
+            margin: 0;
+            @include mq-md {
+                font-size: 25px;
+            }
+        } */
+        h3 {
+            font-size: 26px;
+            color: var(--site-background);
+            text-align: right;
+            margin: 0;
+            @include mq-md {
+                font-size: 70px;
+            }
+        }
+        h4 {
+            font-family: var(--font-primary);
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--site-background);
+            margin: 10px 0 15px 0;
+            text-align: right;
+            @include mq-md {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .services {
+        display: flex;
+        flex-direction: column;
+        margin-top: var(--s10);
+        gap: var(--s6);
+
+        .service {
+            display: flex;
+            flex-direction: column;
+            gap: var(--s3);
+            text-align: center;
+            h4 {
+                margin: 0;
+            }
+        }
     }
 }
