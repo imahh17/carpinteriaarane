@@ -24,8 +24,8 @@
 
 $safe-area: 30px;
 $safe-area-xs: 20px;
-$safe-area-lg: 40px;
-$safe-area-xl: 80px;
+$safe-area-lg: 50px;
+$safe-area-xl: 100px;
 
 $html-fs: 16px;
 $html-lh: 21px;
@@ -69,7 +69,7 @@ $html-lh: 21px;
   --lh-18: 1.8;
 
   --fs-base: #{rem(14px)};
-  --lh-base: var(--lh-15);
+  --lh-base: var(--lh-14);
   @include mq-md {
     --fs-base: #{rem(16px)};
     --lh-base: var(--lh-14);
@@ -116,7 +116,7 @@ $html-lh: 21px;
   --site-background: #f8f8f8;
   --color-primary: #CDA274;
 
-  --color-brand: #0f0f0f;
+  --color-brand: #292F36;
   --color-text: #292F36;
 
 }
@@ -132,6 +132,8 @@ html {
   color: var(--color-text);
   background-color: var(--site-background);
   margin: 0;
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
 }
 
 * {
@@ -144,6 +146,12 @@ ul {
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 h1,h2,h3,h4,h5,h6,
@@ -216,9 +224,6 @@ p, span, a {
   color: var(--site-background);
   font-weight: 500;
   transition: 0.2s ease-in-out all;
-  @include mq-md {
-    padding: 26px 48px;
-  }
 }
 
 .btn:hover {
