@@ -361,7 +361,7 @@ nav ul li:hover {
   }
 }
 .page-content .featured {
-  border-radius: 40px 0px 40px 0px;
+  border-radius: 0px 40px 0px 40px;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -386,7 +386,7 @@ nav ul li:hover {
 }
 @media screen and (min-width: 992px) {
   .page-content .featured {
-    border-radius: 100px 0px 100px 0px;
+    border-radius: 0px 100px 0px 100px;
   }
 }
 .page-content .featured .featured-background {
@@ -410,10 +410,17 @@ nav ul li:hover {
   justify-content: space-between;
   gap: var(--s8);
 }
+.page-content .featured .featured-content br {
+  display: none;
+}
+@media screen and (min-width: 460px) {
+  .page-content .featured .featured-content br {
+    display: block;
+  }
+}
 .page-content .featured h3 {
   font-size: 26px;
   color: var(--site-background);
-  text-align: right;
   margin: 0;
 }
 @media screen and (min-width: 992px) {
@@ -427,12 +434,15 @@ nav ul li:hover {
   font-weight: 400;
   color: var(--site-background);
   margin: 10px 0 15px 0;
-  text-align: right;
 }
 @media screen and (min-width: 992px) {
   .page-content .featured h4 {
     font-size: 20px;
   }
+}
+.page-content .featured .actions_wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 .page-content .services {
   display: flex;
@@ -461,6 +471,11 @@ nav ul li:hover {
   flex-direction: column;
   gap: var(--s2);
   text-align: center;
+}
+@media screen and (min-width: 992px) {
+  .page-content .services .service {
+    gap: var(--s3);
+  }
 }
 .page-content .services .service h4 {
   margin: 0;
@@ -502,6 +517,12 @@ nav ul li:hover {
   object-fit: cover;
   overflow-clip-margin: unset;
   overflow: hidden;
+  border-radius: 40px 0px 40px 0px;
+}
+@media screen and (min-width: 992px) {
+  .page-content .who-we-are .who-image img {
+    border-radius: 100px 0px 100px 0px;
+  }
 }
 .page-content .who-we-are .who-content {
   display: flex;
@@ -560,7 +581,7 @@ nav ul li:hover {
 
 .contact-footer {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding-top: var(--s8);
   padding-bottom: var(--s8);
   background-color: var(--color-primary);
@@ -572,39 +593,13 @@ nav ul li:hover {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-top: calc(var(--s10) * 1.5);
+    padding-bottom: calc(var(--s10) * 1.5);
   }
 }
-.contact-footer .brand-footer .logo > .brand-logo {
-  max-width: 100px;
+.contact-footer .logo > .brand-logo {
+  max-width: 120px;
   height: auto;
-}
-.contact-footer .brand-footer .brand {
-  display: flex;
-  flex-direction: column;
-}
-.contact-footer .brand-footer .brand .brand-name {
-  font-family: var(--font-headings);
-  font-size: 36px;
-  line-height: 1;
-  margin: 0;
-  color: var(--color-brand);
-}
-@media screen and (min-width: 992px) {
-  .contact-footer .brand-footer .brand .brand-name {
-    font-size: 40px;
-  }
-}
-.contact-footer .brand-footer .brand .brand-desc {
-  font-family: var(--font-headings);
-  font-weight: 900;
-  font-size: 14px;
-  margin-top: 0px;
-  color: var(--color-brand);
-}
-@media screen and (min-width: 992px) {
-  .contact-footer .brand-footer .brand .brand-desc {
-    font-size: 18px;
-  }
 }
 .contact-footer .contact-info {
   margin-bottom: var(--s8);
@@ -612,7 +607,7 @@ nav ul li:hover {
 @media screen and (min-width: 768px) {
   .contact-footer .contact-info {
     margin-bottom: 0;
-    padding-right: var(--s8);
+    padding-left: var(--s8);
   }
   .contact-footer .contact-info .contact-content {
     display: flex;
@@ -620,9 +615,24 @@ nav ul li:hover {
     gap: var(--s8);
   }
 }
+@media screen and (min-width: 992px) {
+  .contact-footer .contact-info {
+    padding-left: 0;
+  }
+}
 .contact-footer .contact-info h5 {
   margin-top: 0;
   margin-bottom: var(--s2);
+}
+@media screen and (min-width: 768px) {
+  .contact-footer .contact-info h5 {
+    font-size: 26px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .contact-footer .contact-info p {
+    font-size: 16px;
+  }
 }
 .contact-footer .contact-info .phone-numbers {
   margin-top: var(--s2);

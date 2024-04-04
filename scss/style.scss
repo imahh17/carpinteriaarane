@@ -80,13 +80,13 @@ nav ul li:hover {
         padding-top: var(--s10);
     }
     .featured {
-        border-radius: 40px 0px 40px 0px;
+        border-radius: 0px 40px 0px 40px;
         overflow: hidden;
         position: relative;
         z-index: 1;
         background-color: rgba(0, 0, 0, 0.13);
         @include mq-md {
-            border-radius: 100px 0px 100px 0px;
+            border-radius: 0px 100px 0px 100px;
         }
         .featured-background {
             position: absolute;
@@ -110,7 +110,13 @@ nav ul li:hover {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: var(--s8)
+            gap: var(--s8);
+            br {
+                display: none;
+                @include mq(460px) {
+                    display: block;
+                }
+            }
         }
         /* h1 {
             font-size: 25px;
@@ -132,7 +138,6 @@ nav ul li:hover {
         h3 {
             font-size: 26px;
             color: var(--site-background);
-            text-align: right;
             margin: 0;
             @include mq-md {
                 font-size: 70px;
@@ -144,10 +149,13 @@ nav ul li:hover {
             font-weight: 400;
             color: var(--site-background);
             margin: 10px 0 15px 0;
-            text-align: right;
             @include mq-md {
                 font-size: 20px;
             }
+        }
+        .actions_wrapper {
+            display: flex;
+            justify-content: flex-end;
         }
     }
 
@@ -171,6 +179,9 @@ nav ul li:hover {
             flex-direction: column;
             gap: var(--s2);
             text-align: center;
+            @include mq-md {
+                gap: var(--s3);
+            }
             h4 {
                 margin: 0;
                 br {
@@ -207,6 +218,10 @@ nav ul li:hover {
                 object-fit: cover;
                 overflow-clip-margin: unset;
                 overflow: hidden;
+                border-radius: 40px 0px 40px 0px;
+                @include mq-md {
+                    border-radius: 100px 0px 100px 0px;
+                }
             }
         }
         .who-content {
@@ -261,7 +276,7 @@ nav ul li:hover {
 
 .contact-footer {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding-top: var(--s8);
     padding-bottom: var(--s8);
     background-color: var(--color-primary);
@@ -271,52 +286,39 @@ nav ul li:hover {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding-top: calc(var(--s10) * 1.5);
+        padding-bottom: calc(var(--s10) * 1.5);
     }
-    .brand-footer {
-        .logo > .brand-logo {
-            max-width: 100px;
-            height: auto;
-        }
-        .brand {
-            display: flex;
-            flex-direction: column;
-            .brand-name {
-                font-family: var(--font-headings);
-                font-size: 36px;
-                line-height: 1;
-                margin: 0;
-                color: var(--color-brand);
-                @include mq-md {
-                    font-size: 40px;
-                }
-            }
-            .brand-desc {
-                font-family: var(--font-headings);
-                font-weight: 900;
-                font-size: 14px;
-                margin-top: 0px;
-                color: var(--color-brand);
-                //color: rgb(184, 11, 11);
-                @include mq-md {
-                    font-size: 18px;
-                }
-            }
-        }
+    
+    .logo > .brand-logo {
+        max-width: 120px;
+        height: auto;
     }
     .contact-info {
         margin-bottom: var(--s8);
         @include mq-sm {
             margin-bottom: 0;
-            padding-right: var(--s8);
             .contact-content {
                 display: flex;
                 flex-direction: row;
                 gap: var(--s8);
             }
+            padding-left: var(--s8);
+        }
+        @include mq-md {
+            padding-left: 0;
         }
         h5 {
             margin-top: 0;
-            margin-bottom: var(--s2); 
+            margin-bottom: var(--s2);
+            @include mq-sm {
+                font-size: 26px;
+            }
+        }
+        p {
+            @include mq-sm {
+                font-size: 16px;
+            }
         }
         .phone-numbers {
             margin-top: var(--s2);
